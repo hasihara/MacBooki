@@ -1,9 +1,10 @@
 class Post < ApplicationRecord
 
-  validates :content, {presence: true, length: {maximum: 140}}
+   {length: {maximum: 140}}
   validates :user_id, {presence: true}
   has_many :comments
-  
+  mount_uploader :video, VideoUploader
+  mount_uploader :picture, PictureUploader
   def user
     return User.find_by(id: self.user_id)
   end

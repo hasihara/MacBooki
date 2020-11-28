@@ -1,3 +1,35 @@
 // Place all the styles related to the contacts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+input {
+  border: solid 3px #7c7889;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  padding: 0.1px 0.1px;
+}
+.form-group  {
+  position: absolute;
+  top: 64px;
+  width: 100%;
+  height: auto;
+  min-height: 50%;
+  background-color: #fabea7;
+  text-align: center;
+  padding: 50px;
+  margin-top: 30px;
+  left: 29%;
+
+}
+
+.flash {
+  padding: 10px 0;
+  color: white;
+  background: rgb(251, 170, 88);
+  text-align: center;
+  position: absolute;
+  top: 64px;
+  z-index: 10;
+  width: 100%;
+  border-radius: 0 0 2px 2px;
+  font-size: 14px;
+}

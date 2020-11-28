@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :videos
   devise_for :users
   get "login" => "users#login_form"
 
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
   post "posts/:id/destroy" => "posts#destroy"
   get "/" => "home#top"
   get "about" => "home#about"
-
-  get "contact/new" => "contact#new"
+  get "contacts/new" => "contacts#new"
+  post "contacts/create" => "contacts#create"
 
 end

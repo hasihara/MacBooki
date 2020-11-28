@@ -1,21 +1,22 @@
 <div class="main user-show">
   <div class="container">
     <div class="user">
-<img src="<%= "/user_images/#{@user.image_name}" %>">
+     <img src="<%= "/user_images/#{@user.image_name}" %>">
       <h2><%= @user.name %></h2>
 
 
      <% if @user.is_trainer == true %>
       <h3>トレーナー</h3>
-     <% end %>
-     <% if @user.is_trainer == true %>
-       <P><%= @user.prefecture %><P>
-       <P>MaineGym:<%=@user.mainegym %></P>
-       <p><%= @user.email %></p>
-       プロフィール
+      <div class="edits">
+        <%= @user.prefecture %>
+      </div>
+       <P class="edit">パーソナル申し込みはこちらから</P>
+       <p class="edit-edit"><%= link_to @user.mypage, @user.mypage, class: "page" %></p>
+       <P class="edit-edit-edit">MaineGym:<%=@user.mainegym %></P>
+       <div class="title">プロフィール
        <p><%= @user.profile %></p>
      <% end %>
-
+        </div>
       <% if @user.id == @current_user.id %>
       <%= link_to("編集", "/users/#{@user.id}/edit") %>
       <% end %>

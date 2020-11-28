@@ -3,15 +3,21 @@
     <div class="posts-show-item">
       <div class="post-user-name">
         <img src="<%= "/user_images/#{@user.image_name}" %>">
-
         <%= link_to(@user.name, "/users/#{@user.id}") %>
-
       </div>
-
-      <p>
+      <p class="samples">
         <%= @post.content %>
       </p>
-
+      <% if @video.present? %>
+      <p class="samples">
+       <%= link_to @post.video_url.to_s do %>
+       <%= video_tag(@post.video.to_s,  height: "50%", width: "50%", controls: true, autobuffer: true )%>
+       <% end %>
+       <% end %>
+       <% if @picture.present? %>
+       <%= image_tag(@post.picture.to_s, height: "50%", width: "50%") %>
+       <% end %>
+      </p>
       <div class="post-time">
        <%= @post.created_at %>
        </div>
@@ -21,29 +27,27 @@
         <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
       </div>
       <% end %>
-
-<div class="comment-wrapper border-top　mb-10">
-  <p class="mt-5">コメント一覧</p>
+</div>
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
   <% @comments.each do |c| %>
     <div>
       <% unless c.user.blank? %>
-
-        <img src="<%= "/user_images/#{c.user.image_name}" %>">
-      <% end %>
+      <img src="<%= "/user_images/#{c.user.image_name}" %>">
+    <% end %>
       <%= c.user.name unless c.user.blank? %>
       <br />
       <%= c.content %>
-      
-    <%= link_to "削除", comment_path(c), method: :delete %>
+      <%= link_to "削除", comment_path(c), method: :delete, class: "comment-menus" %>
     </div>
     <br />
   <% end %>
   <% if user_signed_in? %>
     <%= form_with(model: @comment, url: comments_path, method: :post, local: true) do |f| %>
     <%= hidden_field_tag :post_id, @post.id %>
-      <%= f.text_area :content, class: "form-control", rows: 5 %>
-      <%= button_tag type: "submit", class: "btn btn-success float-right mt-1" do %>
-        <i class="far fa-comments"></i> コメントする
+    <%= f.text_area :content, class: "form-control", cols: 40, rows:3 %>
+    <%= button_tag type: "submit", class: "btn btn-outline-danger btn-sm" do %>
+     <div class="comments">コメントする</div>
       <% end %>
     <% end %>
   <% end %>
@@ -51,5 +55,3 @@
     </div>
 
   </div>
-
-</div>

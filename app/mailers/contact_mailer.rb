@@ -5,9 +5,10 @@ class ContactMailer < ApplicationMailer
   #
   #   en.contact_mailer.contact_mail.subject
   #
-  def contact_mail
+  def contact_mail(contact)
+    @contact = contact
     @greeting = "Hi"
 
-    mail to: "to@example.org"
+    mail to: "h.9.19taka@gmail.com"
   end
 end

@@ -14,24 +14,32 @@ class PostsController < ApplicationController
     @comment = Comment.new
   end
 
-
-
-
-
   def new
       @post = Post.new
+
   end
 
   def create
+    p "=================="
+    p @post
+    p "==================="
     @post = Post.new(
       content: params[:content],
-      user_id: @current_user.id
-      )
+      user_id: @current_user.id,
+     )
+     if params[:post].present?
+      @post.video = params[:post][:video]
+     end
+     if params[:picture].present?
+      @post.picture = params[:post][:picture]
+     end
+
     if @post.save
       flash[:notice] = "投稿を作成しました"
      redirect_to("/posts/index")
     else
      render("posts/new")
+
     end
   end
 

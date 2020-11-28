@@ -7,21 +7,15 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where(is_trainer: true)
-
-
       if params[:prefecture].present?
          @users = @users.where(prefecture: params[:prefecture])
- p "=================="
- p @users
- p "==================="
 
       end
 
       if params[:sex].present?
          @users = @users.where(sex: params[:sex])
       end
-
-
+print params
   end
 
   def show
@@ -77,6 +71,9 @@ class UsersController < ApplicationController
     end
     if @user.is_trainer
        @user.prefecture = params[:prefecture]
+    end
+    if @user.is_trainer
+       @user.mypage = params[:mypage]
 
     end
     if @user.is_trainer
@@ -84,12 +81,12 @@ class UsersController < ApplicationController
     end
     if @user.is_trainer
        @user.profile = params[:profile]
-
     end
 
     if @user.save
       flash[:notice] = "ユーザー情報を編集しました"
       redirect_to("/users/#{@user.id}")
+      print @user
     else
       render("users/edit")
     end
