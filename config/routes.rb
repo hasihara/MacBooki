@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   resources :blogs
-  root '#index'
-
   resources :videos
   devise_for :users
   get "login" => "users#login_form"
