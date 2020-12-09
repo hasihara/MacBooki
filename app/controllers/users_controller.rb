@@ -8,21 +8,17 @@ class UsersController < ApplicationController
   def index
     @users = User.where(is_trainer: true)
       if params[:prefecture].present?
-         @users = @users.where(prefecture: params[:prefecture])
+        @users = @users.where(prefecture: params[:prefecture])
 
       end
 
       if params[:sex].present?
-         @users = @users.where(sex: params[:sex])
+        @users = @users.where(sex: params[:sex])
       end
-print params
   end
 
   def show
     @user = User.find_by(id: params[:id])
-
-
-
   end
 
   def new
@@ -30,7 +26,6 @@ print params
   end
 
   def create
-
     @user = User.new(
       name: params[:name],
       sex: params[:sex],
@@ -42,7 +37,6 @@ print params
      @user.is_trainer = true
      print params
    end
-
 
     if @user.save
       session[:user_id] = @user.id
@@ -56,11 +50,10 @@ print params
 
   def edit
     @user = User.find_by(id: params[:id])
-
   end
 
   def update
-     @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
 
@@ -70,17 +63,17 @@ print params
       File.binwrite("public/user_images/#{@user.image_name}", image.read)
     end
     if @user.is_trainer
-       @user.prefecture = params[:prefecture]
+      @user.prefecture = params[:prefecture]
     end
     if @user.is_trainer
-       @user.mypage = params[:mypage]
+      @user.mypage = params[:mypage]
 
     end
     if @user.is_trainer
-       @user.mainegym = params[:mainegym]
+      @user.mainegym = params[:mainegym]
     end
     if @user.is_trainer
-       @user.profile = params[:profile]
+      @user.profile = params[:profile]
     end
 
     if @user.save
@@ -107,7 +100,6 @@ print params
       @email = params[:email]
       @password = params[:password]
       render("users/login_form")
-
     end
   end
 
@@ -128,6 +120,4 @@ print params
       redirect_to("/posts/index")
     end
   end
-
-
 end

@@ -3,52 +3,51 @@
     <div class="user">
      <img src="<%= "/user_images/#{@user.image_name}" %>">
       <h2><%= @user.name %></h2>
-
-
      <% if @user.is_trainer == true %>
-      <h3>トレーナー</h3>
-      <div class="edits">
-        <%= @user.prefecture %>
-      </div>
-      <% if @user.mypage.present? %>
-       <P class="edit">パーソナル申し込みはこちらから</P>
-       <p class="edit-edit"><%= link_to @user.mypage, @user.mypage, class: "page" %></p>
-      <% end %>
-       <P class="edit-edit-edit">MaineGym:<%=@user.mainegym %></P>
-       <div class="title">プロフィール
-       <p><%= @user.profile %></p>
-     <% end %>
+       <h3>トレーナー</h3>
+       <div class="edits">
+         <%= @user.prefecture %>
+       </div>
+       <% if @user.mypage.present? %>
+         <P class="edit">パーソナル申し込みはこちらから</P>
+         <p class="edit-edit"><%= link_to @user.mypage, @user.mypage, target: :_blank, rel: "noopener noreferrer", class: "page" %></p>
+       <% end %>
+        <P class="edit-edit-edit">MaineGym:<%=@user.mainegym %></P>
+        <div class="title">プロフィール
+         <p><%= @user.profile %></p>
         </div>
+     <% end %>
       <% if @user.id == @current_user.id %>
-      <%= link_to("編集", "/users/#{@user.id}/edit") %>
+       <%= link_to("編集", "/users/#{@user.id}/edit") %>
       <% end %>
     </div>
+
 
     <% @user.posts.each do |post| %>
-    <div class="posts-index-item">
-      <div class="post-left">
-        <img src="<%= "/user_images/#{post.user.image_name}" %>">
-      </div>
-      <div class="post-right">
-        <div class="post-user-name">
-          <% link_to(post.user.name, "/users/#{post.user.id}") %>
+      <div class="posts-index-item">
+        <div class="post-left">
+          <img src="<%= "/user_images/#{post.user.image_name}" %>">
         </div>
-        <%= link_to(post.content, "/posts/#{post.id}") %>
-        <% if post.video.present? %>
-         <p class="samples">
-        <%= link_to post.video_url.to_s do %>
-        <%= video_tag(post.video.to_s,  height: "50%", width: "50%", controls: true, autobuffer: true )%>
-        <% end %>
-        </p>
-        <% end %>
+          <div class="post-right">
+            <div class="post-user-name">
+              <% link_to(post.user.name, "/users/#{post.user.id}") %>
+            </div>
+              <%= link_to(post.content, "/posts/#{post.id}") %>
+                <% if post.video.present? %>
+                 <p class="samples">
+                   <%= link_to post.video_url.to_s do %>
+                   <%= video_tag(post.video.to_s,  height: "50%", width: "50%", controls: true, autobuffer: true )%>
+                 </p>
+                <% end %>
+              <% end %>
+          </div>
+            <% if post.user_id == @current_user.id %>
+              <div class="post-menus">
+               <%= link_to("編集", "/posts/#{post.id}/edit") %>
+               <%= link_to("削除", "/posts/#{post.id}/destroy", {method: "post"}) %>
+              </div>
+            <% end %>
       </div>
-      <% if post.user_id == @current_user.id %>
-      <div class="post-menus">
-       <%= link_to("編集", "/posts/#{post.id}/edit") %>
-       <%= link_to("削除", "/posts/#{post.id}/destroy", {method: "post"}) %>
-     </div>
-     <% end %>
-    </div>
     <% end %>
   </div>
 </div>

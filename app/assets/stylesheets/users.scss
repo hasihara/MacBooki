@@ -52,7 +52,7 @@
 
 
 
-/* users/show ================================ */
+
 .user-show {
   text-align: center;
 }
@@ -152,6 +152,7 @@
 
 .title {
   line-height: 20px;
+  white-space: pre-line;
 }
 
 
@@ -159,7 +160,9 @@
 .no-underline {
   text-decoration:none !important;
 }
-/* users/new, users/edit ================================ */
+
+
+//edit
 .users-form input {
   margin-bottom: 15px;
 }

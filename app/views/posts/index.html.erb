@@ -13,11 +13,11 @@
             <%= link_to(post.content, "/posts/#{post.id}") %>
           </div>
           <% if post.video.present? %>
-          <p class="samples">
-          <%= link_to post.video_url.to_s do %>
-          <%= video_tag(post.video.to_s,  height: "50%", width: "50%", controls: true, autobuffer: true )%>
-          <% end %>
-          </p>
+            <p class="samples">
+              <%= link_to post.video_url.to_s do %>
+              <%= video_tag(post.video.to_s,  height: "50%", width: "50%", controls: true, autobuffer: true )%>
+              <% end %>
+            </p>
           <% end %>
         </div>
       </div>

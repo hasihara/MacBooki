@@ -15,12 +15,10 @@ class PostsController < ApplicationController
   end
 
   def new
-      @post = Post.new
-
+    @post = Post.new
   end
 
   def create
-
     @post = Post.new(
       content: params[:content],
       user_id: @current_user.id,
@@ -30,27 +28,26 @@ class PostsController < ApplicationController
       print params
      end
     if @post.save
-      flash[:notice] = "投稿を作成しました"
+     flash[:notice] = "投稿を作成しました"
      redirect_to("/posts/index")
     else
      render("posts/new")
-
     end
   end
 
  def edit
-  @post = Post.find_by(id: params[:id])
+   @post = Post.find_by(id: params[:id])
  end
 
  def update
- @post = Post.find_by(id: params[:id])
- @post.content = params[:content]
- if @post.save
-   flash[:notice] = "投稿を編集しました"
-   redirect_to("/posts/index")
- else
-   render("posts/edit")
- end
+    @post = Post.find_by(id: params[:id])
+    @post.content = params[:content]
+   if @post.save
+    flash[:notice] = "投稿を編集しました"
+    redirect_to("/posts/index")
+   else
+    render("posts/edit")
+   end
  end
 
  def destroy
@@ -63,9 +60,8 @@ class PostsController < ApplicationController
  def ensure_correct_user
      @post = Post.find_by(id: params[:id])
      if @post.user_id != @current_user.id
-         flash[:notice] = "権限がありません"
-         redirect_to("/posts/index")
+       flash[:notice] = "権限がありません"
+       redirect_to("/posts/index")
      end
  end
-
 end

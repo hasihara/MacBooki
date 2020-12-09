@@ -1,11 +1,11 @@
 <div class="main form-groups">
- <%= form_for(@contact, url: "/contacts/create") do |f| %>
-  <div class="form form-group">
-   <%= f.label :email, "返信先メールアドレス" %>
-   <%= f.text_field :email, class: "form-controls" ,size: "10x10"  %>
-   <%= f.label :message, "お問い合わせ内容" %>
-   <%= f.text_area :message, size: "10x10", class: "form-controls" %>
-   <%= f.submit "送信" %>
-  </div>
- <% end %>
+  <%= form_for(@contact, url: "/contacts/create") do |f| %>
+    <div class="form form-group">
+     <%= f.label :email, "返信先メールアドレス" %>
+     <%= f.text_field :email, class: "form-controls" ,size: "10x10"  %>
+     <%= f.label :message, "お問い合わせ内容" %>
+     <%= f.text_area :message, size: "10x10", class: "form-controls" %>
+     <%= f.submit "送信" %>
+    </div>
+  <% end %>
 </div>

@@ -2,18 +2,18 @@
   <div class="container">
     <h1 class="form-heading">投稿する</h1>
     <%= form_for(@post, url: {controller: "posts", action: "create" }) do |f| %>
-    <div class="form">
-      <div class="from-body">
-        <% @post.errors.full_messages.each do |message| %>
+      <div class="form">
+        <div class="from-body">
+          <% @post.errors.full_messages.each do |message| %>
             <div class="form-error">
               <%= message %>
             </div>
-        <% end %>
-        <textarea name="content"><%= @post.content %></textarea>
-       <%= f.file_field :video, {:accept => 'image/*,video/*',class: "field-video"} %>
-      </div>
+          <% end %>
+          <textarea name="content"><%= @post.content %></textarea>
+         <%= f.file_field :video, {:accept => 'image/*,video/*',class: "field-video"} %>
+        </div>
         <%= f.submit "送信" %>
       </div>
-    </div>
     <% end %>
   </div>
+</div>
