@@ -60,7 +60,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers', '4.1.2'
   group :production do
-  gem 'pg'
+  gem 'pg', group: :production
 end
 end
 
