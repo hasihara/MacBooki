@@ -51,9 +51,7 @@ class PostsController < ApplicationController
  end
 
  def destroy
-   unless c.user_id == cuirrent_user.id
-     flash[:notice] = "コメントを削除しました"
-   end
+   
    @post = Post.find_by(id: params[:id])
    @post.destroy
    flash[:notice] = "投稿を削除しました"

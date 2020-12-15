@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
 
-   {length: {maximum: 140}}
+  {length: {maximum: 140}}
   validates :user_id, {presence: true}
-  has_many :comments
+  has_many :comments, dependent: :destroy
   mount_uploader :video, VideoUploader
   mount_uploader :picture, PictureUploader
   def user
